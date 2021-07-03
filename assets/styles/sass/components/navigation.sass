@@ -1,0 +1,76 @@
+@use 'functions/rem' as *
+@use 'abstracts/fonts'
+@use 'abstracts/colors'
+@use 'abstracts/shadows'
+@use 'abstracts/transitions'
+@use 'abstracts/breakpoints'
+@use 'mixins/breakpoint'
+
+// "right" or "left"
+$mobile_alignment: "left"
+$offcanves_width: rem(360px)
+
+@mixin buttons
+    padding: 20px
+    display: block
+    text-decoration: none
+    color: colors.$dark
+
+    @include breakpoint.breakpoint(breakpoints.$navigation_switch) 
+        padding: 40px 20px
+
+@mixin subnavigation
+    display: flex
+    align-items: column
+
+@mixin base
+    position: fixed
+
+    ul 
+        display: flex
+        list-style: none
+
+        li
+            a, span
+                @include buttons
+
+        ul
+            opacity: 0
+            visibility: hidden
+            position: absolute
+
+@mixin mobile
+    @include base
+    top: 0
+    height: 100%
+    background: colors.$light
+    transition: transitions.$default
+    width: $offcanves_width
+
+    @if ($mobile_alignment == "right") 
+        box-shadow: shadows.$right
+        right: 0
+    @else if ($mobile_alignment == "left")
+        box-shadow: shadows.$left
+        left: 0 
+
+    > ul
+        flex-direction: column
+  
+                
+@mixin hide_offcanvas
+    @if ($mobile_alignment == "right") 
+        transform: translateX(100%)
+    @else if ($mobile_alignment == "left")
+        transform: translateX(-100%)
+
+
+@mixin desktop
+    @include base
+    width: 100%
+    background: colors.$light
+    box-shadow: shadows.$default
+    top: 0
+
+    > ul
+        justify-content: space-between

@@ -1,0 +1,16 @@
+$selector: 'input#navigation_toggler'
+
+@mixin base
+    #{$selector}
+        display: none
+
+@mixin is_toggled($element)
+    #{$selector}
+        &:checked ~ #{$element}
+            @content
+
+@mixin is_not_toggled($element)
+    #{$selector}
+        &:not(:checked) ~ #{$element}
+            @content
+

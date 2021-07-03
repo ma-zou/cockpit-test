@@ -1,0 +1,18 @@
+@use 'sass:math'
+@use 'abstracts/fonts'
+@use 'abstracts/colors'
+@use 'abstracts/measurements'
+@use 'functions/rem' as *
+@use 'functions/em' as *
+
+$lineheight: 1.8em    
+$relation: math.div($lineheight, 3.6)
+
+@debug $relation
+
+@mixin headline($size)
+    margin-bottom: -#{$relation}
+    margin-top: -#{$relation}
+    font-size: $size
+    line-height: $lineheight
+    padding-bottom: rem(10px)

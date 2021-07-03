@@ -1,0 +1,13 @@
+@use 'functions/rem' as *
+
+@mixin base
+    list-style: none
+    
+    li
+        &:before
+            content: ""
+            position: relative
+            display: inline-block
+            width: rem(5px)
+            height: rem(5px)
+            border-radius: 50%

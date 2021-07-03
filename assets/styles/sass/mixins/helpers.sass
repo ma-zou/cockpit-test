@@ -1,0 +1,5 @@
+@use 'abstracts/measurements'
+@use 'functions/rem' as *
+
+@mixin margin_bottom($multiplicator: 1)
+    margin-bottom: rem(measurements.$margin_bottom * $multiplicator)

@@ -1,6 +1,15 @@
 @use 'abstracts'
+@use 'functions/rem' as *
+@use 'mixins/breakpoint'
+@use 'components/headlines'
+@use 'components/navigation'
+@use 'components/navigationToggler'
 @use 'components/button'
+@use 'components/mobileBar'
 @use 'components/flexgrid'
+@use 'components/claim'
+@use 'mixins/helpers'
+@use 'sass:map'
 
 *
     margin: 0
@@ -11,8 +20,49 @@ html
     font-size: abstracts.$base_font_size
     font-family: abstracts.$main_font
     color: abstracts.$dark
-    background: abstracts.$dark
+    background: abstracts.$light
 
-button
-    @include button.light
+body
+    min-height: 100vh
+    position: relative
+    
+    @include breakpoint.breakpoint(abstracts.$navigation_switch)
+        margin-top: rem(100px)
+        
+nav
+    @include breakpoint.breakpoint(abstracts.$navigation_switch, max)
+        @include navigation.mobile
 
+    @include breakpoint.breakpoint(abstracts.$navigation_switch)
+        @include navigation.desktop
+
+
+@include navigationToggler.base
+@include breakpoint.breakpoint(abstracts.$navigation_switch, max)
+    @include navigationToggler.is_not_toggled(nav)
+        @include navigation.hide_offcanvas
+
+
+header
+    background: url("/assets/images/header.jpg")
+    height: 50vh
+    display: flex
+    align-items: center
+
+    .claim
+        @include claim.base
+
+#mobile_bar
+    @include mobileBar.mobile_bar
+
+// HTML ELEMENT STYLES
+
+// DEFAULT HEADLINES
+@each $headline, $size in abstracts.$headlines
+    #{$headline}
+        @include headlines.headline($size)
+
+// DEFAULT TEXT
+p
+    line-height: 1.6em
+    @include helpers.margin_bottom

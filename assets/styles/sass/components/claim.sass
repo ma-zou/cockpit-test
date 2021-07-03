@@ -1,0 +1,8 @@
+@use 'abstracts/shadows'
+@use 'abstracts/colors'
+@use 'functions/rem' as *
+
+@mixin base
+    font-size: rem(100px)
+    text-shadow: shadows.$text
+    color: colors.$light

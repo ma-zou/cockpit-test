@@ -21,5 +21,10 @@
         echo $templates->render('main', ['title' => 'That was offensive 3', 'description' => 'That was descriptive 3']);
     });
 
+    $router->get('/styleguide', function() use ($templates) {
+
+        echo $templates->render('styleguide', ['test' => '123123']);
+    });
+
     $router->run();
 ?>
