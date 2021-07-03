@@ -1,0 +1,10 @@
+@use "sass:map"
+@use "../abstracts/breakpoints" as *
+
+@mixin breakpoint($bpName, $minMax: min)
+    @if $minMax == min
+        @media (min-width: map.get($breakpoints, $bpName))
+            @content
+    @else
+        @media (max-width: map.get($breakpoints, $bpName) - 1)
+            @content

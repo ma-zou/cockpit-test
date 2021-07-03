@@ -1,0 +1,5 @@
+@use 'abstracts/fonts' as *
+@use 'sass:math'
+
+@function rem($size)
+    @return math.div($size, $base_font_size) * 1rem

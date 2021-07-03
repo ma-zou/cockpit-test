@@ -1,0 +1,70 @@
+@use 'abstracts'
+@use 'functions/rem'
+@use 'mixins/breakpoint'
+@use 'sass:math'
+@use 'sass:map'
+
+.row
+    margin-left: auto
+    margin-right: auto
+    max-width: rem(abstracts.$grid_size)
+    width: 100%
+    position: relative
+    display: flex
+    flex: 0 1 auto
+    flex-wrap: wrap
+    flex-direction: row
+    justify-content: flex-start
+    align-items: stretch
+
+    &:not(.full-width)
+        .row
+            margin-left: -#{rem(abstracts.$base_gap)}
+            padding-left: 0
+            padding-right: 0
+            max-width: calc(100% + #{rem(abstracts.$base_gap * 2)})
+            width: calc(100% + #{rem(abstracts.$base_gap * 2)})
+        
+  
+    &.full-width
+        max-width: none
+  
+    .cms-el-row
+        margin-left: -#{rem(abstracts.$base_gap)}
+        padding-left: 0
+        padding-right: 0
+        max-width: calc(100% + #{rem(abstracts.$base_gap * 2)})
+        width: calc(100% + #{rem(abstracts.$base_gap * 2)})
+  
+    > .row
+        margin: 0
+        padding: 0
+        max-width: 100%
+        width: 100%
+        flex-basis: 100%
+    
+
+
+.col
+    float: left
+    padding-left: rem(abstracts.$base_gap)
+    padding-right: rem(abstracts.$base_gap)
+    max-width: 100%
+    width: 100%
+    flex: 0 0 auto
+    flex-grow: 1
+    flex-basis: 100%
+    box-sizing: border-box
+
+
+.no-gutter,
+.no-gutter > .col
+    padding-left: 0
+    padding-right: 0
+
+@each $bp, $size in abstracts.$breakpoints
+    @include breakpoint.breakpoint($bp)
+        @for $i from 0 through abstracts.$column_amount
+            .col.#{$bp}-#{$i}
+                max-width: math.div(100%, abstracts.$column_amount) * $i
+                flex-basis: math.div(100%, abstracts.$column_amount) * $i

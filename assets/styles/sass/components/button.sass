@@ -1,0 +1,20 @@
+@use 'functions/rem' as *
+@use 'abstracts/fonts'
+@use 'abstracts/colors'
+
+@mixin base
+    padding: rem(10px) rem(20px)
+    font-size: fonts.$base_font_size
+    font-family: fonts.$main_font
+
+@mixin default
+    @include base
+    background: colors.$secondary
+    color: colors.$light
+    border: none
+
+@mixin light
+    @include base
+    border: solid 1px colors.$light
+    color: colors.$light
+    background: transparent

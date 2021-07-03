@@ -1,0 +1,18 @@
+@use 'abstracts'
+@use 'components/button'
+@use 'components/flexgrid'
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html
+    font-size: abstracts.$base_font_size
+    font-family: abstracts.$main_font
+    color: abstracts.$dark
+    background: abstracts.$dark
+
+button
+    @include button.light
+

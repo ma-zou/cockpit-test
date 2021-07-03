@@ -1,0 +1,1 @@
+export default "this is a text message loaded as module";
